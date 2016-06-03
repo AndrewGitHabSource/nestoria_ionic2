@@ -5,7 +5,7 @@ import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {ListPage} from './pages/list/list';
 import {search} from './pages/search/search';
 import { JSONP_PROVIDERS, Jsonp } from '@angular/http';
-import { restService } from './services/service';
+import { restService } from './services/restService';
 
 
 

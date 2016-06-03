@@ -6,7 +6,7 @@
 </ion-navbar>
 
 <ion-content>
-    <form name="searchForm" (ngSubmit)="searchObjects()">
+    <form padding name="searchForm" (ngSubmit)="searchObjects()">
         <input type="text" name="search"  class="form-control" required [(ngModel)]="searchRequest">
         <input type="submit" value="OK">
     </form>
