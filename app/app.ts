@@ -3,10 +3,18 @@ import {App, Platform, MenuController, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {ListPage} from './pages/list/list';
+import {search} from './pages/search/search';
+import { JSONP_PROVIDERS, Jsonp } from '@angular/http';
+import { restService } from './services/service';
+
 
 
 @App({
   templateUrl: 'build/app.html',
+  providers: [
+    JSONP_PROVIDERS,
+    restService
+  ],
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
@@ -25,7 +33,8 @@ class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
+      { title: 'My First List', component: ListPage },
+      { title: 'tu tu tu', component: search }
     ];
   }
 
