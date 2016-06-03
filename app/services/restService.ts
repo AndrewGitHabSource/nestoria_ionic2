@@ -13,7 +13,7 @@ export class restService {
     private searchParams = new URLSearchParams();
     private headers = new Headers();
 
-    public properties: Array<any>;
+    public properties: Array<property>;
 
     constructor(private jsonp: Jsonp) {
         this.setParameters(parameters);
@@ -35,7 +35,6 @@ export class restService {
         return this.jsonp.get(this.url, {search: this.searchParams}, {headers: this.headers})
             .toPromise()
             .then(response => {
-                // this.properties = response.json().response.listings;
                 this.setProperties(response.json().response.listings);
                 return this.properties;
             })
