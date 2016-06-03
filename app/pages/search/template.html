@@ -1,0 +1,19 @@
+<ion-navbar *navbar>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My First List</ion-title>
+</ion-navbar>
+
+<ion-content>
+    <form name="searchForm" (ngSubmit)="searchObjects()">
+        <input type="text" name="search"  class="form-control" required [(ngModel)]="searchRequest">
+        <input type="submit" value="OK">
+    </form>
+
+    <button ion-item class="list-objects">
+        <ion-item *ngFor="let item of properties">
+            <p>{{ item.title }}</p>
+        </ion-item>
+    </button>
+</ion-content>

@@ -3,7 +3,7 @@ import { Headers, Http, HTTP_PROVIDERS, URLSearchParams,JSONP_PROVIDERS, Jsonp }
 
 import 'rxjs/add/operator/toPromise';
 
-import {property} from "../common/objects";
+import { property } from "../common/objects";
 
 @Injectable()
 export class restService {
@@ -26,7 +26,7 @@ export class restService {
         this.searchParams.set('encoding', 'json');
         this.searchParams.set('listing_type', '1');
         this.searchParams.set('page', '1');
-        this.searchParams.set('place_name', 'ww');
+        this.searchParams.set('place_name', '');
         this.searchParams.set('centre_point', '');
 
     }
@@ -36,7 +36,9 @@ export class restService {
         return this.properties;
     }
 
-    getPropertiesOnServer(): Promise<any[]> {
+    getPropertiesOnServer(searchProperties): Promise<property[]> {
+        this.searchParams.set('place_name', searchProperties);
+        
         return this.jsonp.get(this.url, {search: this.searchParams}, {headers: this.headers})
             .toPromise()
             .then(response => {
