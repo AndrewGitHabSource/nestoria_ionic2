@@ -1,0 +1,25 @@
+<ion-navbar *navbar>
+    <button menuToggle *ngIf="!selectedItem">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Item Details</ion-title>
+</ion-navbar>
+
+<ion-content>
+    <section class="info">
+        <button>Add to favorites</button>
+        <h4>{{ objectDetails.title }}</h4>
+
+        <p>{{ objectDetails.price_formatted }}</p>
+
+        <img [src]="objectDetails.img_url">
+
+        <p>bedroom: {{ objectDetails.bedroom_number }}</p>
+
+        <p>bathroom: {{ objectDetails.bathroom_number }}</p>
+
+        <p>
+            {{ objectDetails.summary }}
+        </p>
+    </section>
+</ion-content>

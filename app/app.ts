@@ -4,8 +4,9 @@ import {StatusBar} from 'ionic-native';
 import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {ListPage} from './pages/list/list';
 import {search} from './pages/search/search';
+import {detailsPage} from './pages/details/details';
 import { JSONP_PROVIDERS, Jsonp } from '@angular/http';
-import { restService } from './services/restService';
+import { restService } from './services/propertiesService';
 
 
 
@@ -21,7 +22,7 @@ class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage: any = HelloIonicPage;
+  rootPage: any = search;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -34,7 +35,7 @@ class MyApp {
     this.pages = [
       { title: 'Hello Ionic', component: HelloIonicPage },
       { title: 'My First List', component: ListPage },
-      { title: 'tu tu tu', component: search }
+      { title: 'PropertyCross', component: search }
     ];
   }
 
