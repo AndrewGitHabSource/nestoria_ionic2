@@ -28,7 +28,13 @@
         <input type="submit" value="OK">
     </form>
 
-    <ion-list class="list-objects">
+    <ion-list *ngIf="showRecentSearches" class="list-recent-searches">
+        <ion-item ion-item *ngFor="let item of recentSearches">
+            <p (click)="searchObjects(item.request)">{{ item.request }} <span>({{ item.length }})</span></p>
+        </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="!showRecentSearches" class="list-objects">
         <ion-item ion-item *ngFor="let item of properties" (click)="showProperty($event, item)">
             <p>{{ item.title }}</p>
         </ion-item>

@@ -1,0 +1,14 @@
+<ion-navbar *navbar>
+    <button menuToggle *ngIf="!selectedItem">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Item Details</ion-title>
+</ion-navbar>
+
+<ion-content>
+    <ion-list *ngIf="!showRecentSearches" class="list-objects">
+        <ion-item ion-item *ngFor="let item of favorites" (click)="showProperty($event, item)">
+            <p>{{ item.title }}</p>
+        </ion-item>
+    </ion-list>
+</ion-content>

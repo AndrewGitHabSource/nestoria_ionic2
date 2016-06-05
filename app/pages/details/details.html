@@ -7,7 +7,7 @@
 
 <ion-content>
     <section class="info">
-        <button>Add to favorites</button>
+        <button (click)="addToFavorites(objectDetails)">Add to favorites</button>
         <h4>{{ objectDetails.title }}</h4>
 
         <p>{{ objectDetails.price_formatted }}</p>

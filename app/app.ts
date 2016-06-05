@@ -4,9 +4,12 @@ import {StatusBar} from 'ionic-native';
 import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {ListPage} from './pages/list/list';
 import {search} from './pages/search/search';
+import {favoritesPage} from './pages/favorites/favorites';
 import {detailsPage} from './pages/details/details';
 import { JSONP_PROVIDERS, Jsonp } from '@angular/http';
-import { restService } from './services/propertiesService';
+import { propertiesService } from './services/propertiesService';
+import { favoriteService } from './pages/favorites/favoriteService';
+
 
 
 
@@ -14,7 +17,8 @@ import { restService } from './services/propertiesService';
   templateUrl: 'build/app.html',
   providers: [
     JSONP_PROVIDERS,
-    restService
+    propertiesService,
+    favoriteService
   ],
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
@@ -33,9 +37,8 @@ class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage },
-      { title: 'PropertyCross', component: search }
+      { title: 'PropertyCross', component: search },
+      { title: 'Favorites', component: favoritesPage }
     ];
   }
 
