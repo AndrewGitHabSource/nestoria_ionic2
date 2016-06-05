@@ -30,7 +30,7 @@
 
     <ion-list *ngIf="showRecentSearches" class="list-recent-searches">
         <ion-item ion-item *ngFor="let item of recentSearches">
-            <p (click)="searchObjects(item.request)">{{ item.request }} <span>({{ item.length }})</span></p>
+            <p (click)="goOnRequest(item.request)">{{ item.request }} <span>({{ item.length }})</span></p>
         </ion-item>
     </ion-list>
 
@@ -38,6 +38,8 @@
         <ion-item ion-item *ngFor="let item of properties" (click)="showProperty($event, item)">
             <p>{{ item.title }}</p>
         </ion-item>
-    </ion-list>
 
+        <button [disabled]="processLoad" class="pagination" (click)="prev()">Prev</button>
+        <button [disabled]="processLoad" class="pagination" (click)="next()">Next</button>
+    </ion-list>
 </ion-content>

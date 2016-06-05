@@ -32,14 +32,16 @@ export class propertiesService {
         this.properties = properties;
     }
 
-    getPropertiesOnServer(searchProperties): Promise<property[]> {
+    getPropertiesOnServer(searchProperties, page): Promise<property[]> {
+        page = page || 1;
         this.searchParams.set('place_name', searchProperties);
+        this.searchParams.set('page', page);
 
         return this.jsonp.get(this.url, {search: this.searchParams}, {headers: this.headers})
             .toPromise()
             .then(response => {
                 this.setProperties(response.json().response.listings);
-                this.saveRecentSearches(response.json().response.listings, searchProperties);
+                //this.saveRecentSearches(response.json().response.listings, searchProperties);
                 return this.properties;
             })
             .catch(this.handleError);

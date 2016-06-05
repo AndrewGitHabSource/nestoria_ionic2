@@ -6,7 +6,7 @@
 </ion-navbar>
 
 <ion-content>
-    <ion-list *ngIf="!showRecentSearches" class="list-objects">
+    <ion-list class="list-objects">
         <ion-item ion-item *ngFor="let item of favorites" (click)="showProperty($event, item)">
             <p>{{ item.title }}</p>
         </ion-item>
