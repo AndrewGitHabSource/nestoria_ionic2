@@ -19,7 +19,6 @@ export class favoriteService {
     }
 
     public saveFavorite(favorite) {
-        this.getFavorites();
         this.favorites.push(favorite);
         localStorage.setItem('favoriteStorage', JSON.stringify(this.favorites));
     }

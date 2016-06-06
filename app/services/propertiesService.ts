@@ -1,12 +1,12 @@
-import { Injectable }    from '@angular/core';
-import { Headers, Http, HTTP_PROVIDERS, URLSearchParams,JSONP_PROVIDERS, Jsonp } from '@angular/http';
+import {Injectable}    from '@angular/core';
+import {Headers, URLSearchParams, Jsonp} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { parameters } from "../common/parameters";
-import { headers } from "../common/headers";
-import { property } from "../common/objects";
-import { classRecentSearches } from "../common/recentSearches";
+import {parameters} from "../common/parameters";
+import {headers} from "../common/headers";
+import {property} from "../common/objects";
+import {classRecentSearches} from "../common/recentSearches";
 
 @Injectable()
 export class propertiesService {
@@ -15,15 +15,14 @@ export class propertiesService {
     private headers = new Headers();
     private countSearchResult = 3;
 
-    public properties: Array<property>;
-    public recentSearches: Array<classRecentSearches>;
+    public properties:Array<property>;
+    public recentSearches:Array<classRecentSearches>;
 
-    constructor(private jsonp: Jsonp) {
+    constructor(private jsonp:Jsonp) {
         this.setParameters(parameters);
         this.setHeaders(headers);
     }
-
-
+    
     getProperties() {
         return this.properties;
     }
@@ -32,7 +31,7 @@ export class propertiesService {
         this.properties = properties;
     }
 
-    getPropertiesOnServer(searchProperties, page): Promise<property[]> {
+    getPropertiesOnServer(searchProperties, page):Promise<property[]> {
         page = page || 1;
         this.searchParams.set('place_name', searchProperties);
         this.searchParams.set('page', page);
@@ -58,20 +57,19 @@ export class propertiesService {
         }
     }
 
-    private handleError(error: any) {
+    private handleError(error:any) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     }
-
-
+    
     /* begin recent searches */
 
-    public getRecentSearches(){
+    public getRecentSearches() {
         this.recentSearches = localStorage.getItem("recentSearches") ? JSON.parse(localStorage.getItem("recentSearches")) : [];
         return this.recentSearches;
     }
 
-    public saveRecentSearches(response, searchRequest){
+    public saveRecentSearches(response, searchRequest) {
         var length = 0;
 
         this.getRecentSearches();

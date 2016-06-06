@@ -18,7 +18,9 @@
             We're curious to see what ideas you have. Our hope is that the API will let you use the data in ways
             that we have not thought of. Feel free to amaze us.
         </p>
+
         <h5>The API is very much a work in progress</h5>
+
         <p>
             Follow along on the tutorial section of the Ionic docs!
         </p>
@@ -28,7 +30,7 @@
     </div>
 
     <form padding name="searchForm" (ngSubmit)="find()">
-        <input type="text" name="search"  class="form-control" required [(ngModel)]="searchRequest">
+        <input type="text" name="search" class="form-control" required [(ngModel)]="searchRequest">
         <input type="submit" value="OK">
     </form>
 
@@ -40,6 +42,7 @@
 
     <ion-list *ngIf="!showRecentSearches" class="list-objects">
         <ion-item ion-item *ngFor="let item of properties" (click)="showProperty($event, item)">
+            <img [src]="item.thumb_url">
             <p>{{ item.title }}</p>
         </ion-item>
 

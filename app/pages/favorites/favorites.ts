@@ -9,7 +9,8 @@ import {detailsPage} from '../details/details';
 })
 export class favoritesPage {
     public favorites:Array<property>;
-    constructor(private nav: NavController, navParams: NavParams, private service: favoriteService) {
+
+    constructor(private nav:NavController, navParams:NavParams, private service:favoriteService) {
         this.favorites = service.getFavorites();
     }
 
@@ -19,5 +20,4 @@ export class favoritesPage {
             typeFavorite: true
         });
     }
-
 }
