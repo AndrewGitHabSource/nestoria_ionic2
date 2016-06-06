@@ -3,7 +3,6 @@ import {App, Platform, MenuController, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {search} from './pages/search/search';
 import {favoritesPage} from './pages/favorites/favorites';
-import {detailsPage} from './pages/details/details';
 import { JSONP_PROVIDERS, Jsonp } from '@angular/http';
 import { propertiesService } from './services/propertiesService';
 import { favoriteService } from './pages/favorites/favoriteService';
@@ -18,7 +17,7 @@ import { favoriteService } from './pages/favorites/favoriteService';
     propertiesService,
     favoriteService
   ],
-  config: {} // http://ionicframework.com/docs/v2/api/config/Config/
+  config: {}
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;

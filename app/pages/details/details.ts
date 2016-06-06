@@ -8,9 +8,11 @@ import {favoriteService} from '../favorites/favoriteService';
 })
 export class detailsPage {
     objectDetails: property;
+    typeFavorite: boolean = false;
 
     constructor(private nav: NavController, navParams: NavParams, private service: favoriteService) {
         this.objectDetails = navParams.get('item');
+        this.typeFavorite = navParams.get('typeFavorite');
     }
 
     addToFavorites(object){

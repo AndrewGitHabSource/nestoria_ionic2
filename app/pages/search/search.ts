@@ -1,13 +1,13 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {propertiesService} from '../../services/propertiesService';
-import {JSONP_PROVIDERS}  from '@angular/http';
-import {Observable}       from 'rxjs/Observable';
-import {EventEmitter, Input, Output} from '@angular/core';
+// import {JSONP_PROVIDERS}  from '@angular/http';
+// import {Observable}       from 'rxjs/Observable';
+import {Input} from '@angular/core';
 import { classRecentSearches } from "../../common/recentSearches";
 import {detailsPage} from '../details/details';
 import {property} from '../../common/objects';
-import {parameters} from "../../common/parameters";
-import {headers} from "../../common/headers";
+// import {parameters} from "../../common/parameters";
+// import {headers} from "../../common/headers";
 
 
 @Page({
@@ -20,8 +20,8 @@ export class search {
     private properties:Array<property>;
     private recentSearches:Array<classRecentSearches>;
     private showRecentSearches:boolean = true;
-    private index = 1;
-    private processLoad = false;
+    private index: number = 1;
+    private processLoad: boolean = false;
 
     constructor(private rest:propertiesService, private nav:NavController, navParams:NavParams) {
         this.recentSearches = rest.getRecentSearches();
@@ -29,7 +29,6 @@ export class search {
 
     searchObjects(request:string, page:number) {
         this.processLoad = true;
-        // request = request || this.searchRequest;
         page = page || 1;
         this.rest.getPropertiesOnServer(request, page)
             .then(response => {
@@ -39,6 +38,7 @@ export class search {
                 }
                 this.showRecentSearches = false;
                 this.processLoad = false;
+                this.showLoader = false;
             });
     }
 

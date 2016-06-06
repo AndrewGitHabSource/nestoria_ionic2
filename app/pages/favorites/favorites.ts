@@ -15,7 +15,8 @@ export class favoritesPage {
 
     showProperty(event, item) {
         this.nav.push(detailsPage, {
-            item: item
+            item: item,
+            typeFavorite: true
         });
     }
 

@@ -5,6 +5,10 @@
     <ion-title>Property Cross</ion-title>
 </ion-navbar>
 
+<div *ngIf="processLoad" class="loader">
+    <img src="/img/loader.gif">
+</div>
+
 <ion-content>
     <div padding>
         <h3>Our API is a programmtic interface for you to access the Nestoria database.!</h3>
