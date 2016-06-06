@@ -18,6 +18,8 @@ export class search {
     private showRecentSearches:boolean = true;
     private index:number = 1;
     private processLoad:boolean = false;
+    private serverError: string;
+    private buttonBlocked: boolean = false;
 
     constructor(private rest:propertiesService, private nav:NavController, navParams:NavParams) {
         this.recentSearches = rest.getRecentSearches();
@@ -28,13 +30,24 @@ export class search {
         page = page || 1;
         this.rest.getPropertiesOnServer(request, page)
             .then(response => {
-                this.properties = response;
+                this.properties = response.response.listings;
+                console.log(response);
+                if(response.response.application_response_text == "unknown location"){
+                    this.serverError = "There were no properties found for the given location";
+                    this.buttonBlocked = true;
+                }
+                else{
+                    this.buttonBlocked = false;
+                }
                 if (page == 1) {
-                    this.rest.saveRecentSearches(this.properties, request);
+                    this.rest.saveRecentSearches(response.response.total_results, request);
                 }
                 this.showRecentSearches = false;
                 this.processLoad = false;
-            });
+            }).catch(error => {
+                this.serverError = "Network connection issues / timeout - An error occurred while searching. Please check your network connection and try again";
+                this.processLoad = false;
+        });
     }
 
     showProperty(event, item) {

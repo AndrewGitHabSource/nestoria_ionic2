@@ -29,14 +29,14 @@ export class propertiesService {
         this.properties = properties;
     }
 
-    public getPropertiesOnServer(searchProperties:string, page):Promise<property[]> {
+    public getPropertiesOnServer(searchProperties:string, page) {
         page = page || 1;
         this.searchParams.set('place_name', searchProperties);
         this.searchParams.set('page', page);
 
         return this.jsonp.get(this.url, {search: this.searchParams}, {headers: this.headers})
             .toPromise()
-            .then((response) => response.json().response.listings)
+            .then((response) => response.json())
             .catch(this.handleError);
     }
 
@@ -53,7 +53,6 @@ export class propertiesService {
     }
 
     private handleError(error:any) {
-        console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     }
     
@@ -64,13 +63,13 @@ export class propertiesService {
         return this.recentSearches;
     }
 
-    public saveRecentSearches(response, searchRequest: string):void {
+    public saveRecentSearches(count: number, searchRequest: string):void {
         var length = 0;
 
         this.getRecentSearches();
 
-        if (response) {
-            length = response.length;
+        if (count) {
+            length = count;
         }
 
         if (this.recentSearches.length < this.countSearchResult) {

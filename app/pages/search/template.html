@@ -34,6 +34,10 @@
         <input type="submit" value="OK">
     </form>
 
+    <section class="errors">
+        <p padding>{{ serverError }}</p>
+    </section>
+
     <ion-list *ngIf="showRecentSearches" class="list-recent-searches">
         <ion-item ion-item *ngFor="let item of recentSearches">
             <p (click)="goOnRequest(item.request)">{{ item.request }} <span>({{ item.length }})</span></p>
@@ -46,7 +50,7 @@
             <p>{{ item.title }}</p>
         </ion-item>
 
-        <button [disabled]="processLoad" class="pagination" (click)="prev()">Prev</button>
-        <button [disabled]="processLoad" class="pagination" (click)="next()">Next</button>
+        <button [disabled]="processLoad || buttonBlocked" class="pagination" (click)="prev()">Prev</button>
+        <button [disabled]="processLoad || buttonBlocked" class="pagination" (click)="next()">Next</button>
     </ion-list>
 </ion-content>

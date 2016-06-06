@@ -9,13 +9,21 @@ import {favoriteService} from '../favorites/favoriteService';
 export class detailsPage {
     objectDetails: property;
     typeFavorite: boolean = false;
+    toggleText: string;
 
     constructor(private nav: NavController, navParams: NavParams, private service: favoriteService) {
         this.objectDetails = navParams.get('item');
         this.typeFavorite = navParams.get('typeFavorite');
+
+        if(this.service.compareFavorite(navParams.get('item'))){
+            this.toggleText = "Delete Favorite";
+        }
+        else{
+            this.toggleText = "Add Favorite";
+        }
     }
 
-    addToFavorites(object){
+    toggleFavorite(object){
         this.service.saveFavorite(object);
     }
 }
