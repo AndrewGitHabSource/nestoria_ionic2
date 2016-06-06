@@ -25,11 +25,11 @@ export class propertiesService {
         return this.properties;
     }
 
-    private setProperties(properties) {
+    private setProperties(properties:Array<property>) {
         this.properties = properties;
     }
 
-    public getPropertiesOnServer(searchProperties, page):Promise<property[]> {
+    public getPropertiesOnServer(searchProperties:string, page):Promise<property[]> {
         page = page || 1;
         this.searchParams.set('place_name', searchProperties);
         this.searchParams.set('page', page);
@@ -64,7 +64,7 @@ export class propertiesService {
         return this.recentSearches;
     }
 
-    public saveRecentSearches(response, searchRequest) {
+    public saveRecentSearches(response, searchRequest: string):void {
         var length = 0;
 
         this.getRecentSearches();
