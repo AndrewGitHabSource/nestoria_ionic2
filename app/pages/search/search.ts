@@ -1,7 +1,7 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {propertiesService} from '../../services/propertiesService';
 import {Input} from '@angular/core';
-import { classRecentSearches } from "../../common/recentSearches";
+import {classRecentSearches} from "../../common/recentSearches";
 import {detailsPage} from '../details/details';
 import {property} from '../../common/objects';
 
@@ -11,13 +11,13 @@ import {property} from '../../common/objects';
 })
 export class search {
     @Input()
-        searchRequest:string;
+    searchRequest:string;
 
     private properties:Array<property>;
     private recentSearches:Array<classRecentSearches>;
     private showRecentSearches:boolean = true;
-    private index: number = 1;
-    private processLoad: boolean = false;
+    private index:number = 1;
+    private processLoad:boolean = false;
 
     constructor(private rest:propertiesService, private nav:NavController, navParams:NavParams) {
         this.recentSearches = rest.getRecentSearches();
@@ -49,7 +49,7 @@ export class search {
         this.searchObjects(this.searchRequest, this.index);
     }
 
-    find(){
+    find() {
         this.index = 1;
         this.searchObjects(this.searchRequest, this.index);
     }

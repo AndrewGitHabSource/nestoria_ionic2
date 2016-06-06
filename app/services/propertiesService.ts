@@ -1,8 +1,6 @@
 import {Injectable}    from '@angular/core';
 import {Headers, URLSearchParams, Jsonp} from '@angular/http';
-
 import 'rxjs/add/operator/toPromise';
-
 import {parameters} from "../common/parameters";
 import {headers} from "../common/headers";
 import {property} from "../common/objects";
@@ -23,25 +21,22 @@ export class propertiesService {
         this.setHeaders(headers);
     }
     
-    getProperties() {
+    public getProperties() {
         return this.properties;
     }
 
-    setProperties(properties) {
+    private setProperties(properties) {
         this.properties = properties;
     }
 
-    getPropertiesOnServer(searchProperties, page):Promise<property[]> {
+    public getPropertiesOnServer(searchProperties, page):Promise<property[]> {
         page = page || 1;
         this.searchParams.set('place_name', searchProperties);
         this.searchParams.set('page', page);
 
         return this.jsonp.get(this.url, {search: this.searchParams}, {headers: this.headers})
             .toPromise()
-            .then(response => {
-                this.setProperties(response.json().response.listings);
-                return this.properties;
-            })
+            .then((response) => response.json().response.listings)
             .catch(this.handleError);
     }
 
