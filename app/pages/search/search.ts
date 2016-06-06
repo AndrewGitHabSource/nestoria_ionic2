@@ -17,12 +17,11 @@ export class search {
     @Input()
         searchRequest:string;
 
-    properties:Array<property>;
-    recentSearches:Array<classRecentSearches>;
-    showRecentSearches:boolean = true;
-    error:any;
-    index = 1;
-    processLoad = false;
+    private properties:Array<property>;
+    private recentSearches:Array<classRecentSearches>;
+    private showRecentSearches:boolean = true;
+    private index = 1;
+    private processLoad = false;
 
     constructor(private rest:propertiesService, private nav:NavController, navParams:NavParams) {
         this.recentSearches = rest.getRecentSearches();
@@ -30,12 +29,12 @@ export class search {
 
     searchObjects(request:string, page:number) {
         this.processLoad = true;
-        request = request || this.searchRequest;
+        // request = request || this.searchRequest;
         page = page || 1;
         this.rest.getPropertiesOnServer(request, page)
             .then(response => {
                 this.properties = response;
-                if (page <= 1) {
+                if (page == 1) {
                     this.rest.saveRecentSearches(this.properties, request);
                 }
                 this.showRecentSearches = false;
@@ -52,6 +51,11 @@ export class search {
     goOnRequest(request:string) {
         this.index = 1;
         this.searchRequest = request;
+        this.searchObjects(this.searchRequest, this.index);
+    }
+
+    find(){
+        this.index = 1;
         this.searchObjects(this.searchRequest, this.index);
     }
 

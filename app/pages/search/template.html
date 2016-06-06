@@ -23,7 +23,7 @@
         </p>
     </div>
 
-    <form padding name="searchForm" (ngSubmit)="searchObjects()">
+    <form padding name="searchForm" (ngSubmit)="find()">
         <input type="text" name="search"  class="form-control" required [(ngModel)]="searchRequest">
         <input type="submit" value="OK">
     </form>

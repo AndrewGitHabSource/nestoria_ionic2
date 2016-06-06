@@ -41,7 +41,6 @@ export class propertiesService {
             .toPromise()
             .then(response => {
                 this.setProperties(response.json().response.listings);
-                //this.saveRecentSearches(response.json().response.listings, searchProperties);
                 return this.properties;
             })
             .catch(this.handleError);
