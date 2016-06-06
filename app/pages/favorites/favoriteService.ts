@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { property } from "../common/objects";
+import { property } from "../../common/objects";
 
 
 @Injectable()

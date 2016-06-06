@@ -1,8 +1,6 @@
 import {ViewChild} from '@angular/core';
 import {App, Platform, MenuController, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
-import {ListPage} from './pages/list/list';
 import {search} from './pages/search/search';
 import {favoritesPage} from './pages/favorites/favorites';
 import {detailsPage} from './pages/details/details';

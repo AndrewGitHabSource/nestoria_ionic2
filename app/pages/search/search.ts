@@ -3,7 +3,7 @@ import {propertiesService} from '../../services/propertiesService';
 import {JSONP_PROVIDERS}  from '@angular/http';
 import {Observable}       from 'rxjs/Observable';
 import {EventEmitter, Input, Output} from '@angular/core';
-import { classRecentSearches } from "../common/recentSearches";
+import { classRecentSearches } from "../../common/recentSearches";
 import {detailsPage} from '../details/details';
 import {property} from '../../common/objects';
 import {parameters} from "../../common/parameters";
@@ -28,7 +28,7 @@ export class search {
         this.recentSearches = rest.getRecentSearches();
     }
 
-    searchObjects(request:string, page:string) {
+    searchObjects(request:string, page:number) {
         this.processLoad = true;
         request = request || this.searchRequest;
         page = page || 1;
@@ -50,6 +50,7 @@ export class search {
     }
 
     goOnRequest(request:string) {
+        this.index = 1;
         this.searchRequest = request;
         this.searchObjects(this.searchRequest, this.index);
     }
