@@ -29,8 +29,10 @@ export class favoritesPage {
         });
     }
 
-    deleteFavorite(i){
+    deleteFavorite(i, event){
         this.service.deleteFavorite(i);
         this.checkEmptyFavorites();
+        event.stopPropagation();
+        this.nav.push(favoritesPage);
     }
 }
