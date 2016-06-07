@@ -6,9 +6,11 @@
 </ion-navbar>
 
 <ion-content>
+    <h4 padding *ngIf="emptyFavorites">You have not added any properties to your favourites</h4>
     <ion-list class="list-objects">
-        <ion-item ion-item *ngFor="let item of favorites" (click)="showProperty($event, item)">
+        <ion-item ion-item *ngFor="let item of favorites let i = index" (click)="showProperty($event, item)">
             <p>{{ item.title }}</p>
+            <button (click)="deleteFavorite(i)">Delete</button>
         </ion-item>
     </ion-list>
 </ion-content>

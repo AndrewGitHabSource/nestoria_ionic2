@@ -11,13 +11,17 @@ export class favoriteService {
         this.getFavorites();
     }
 
-    public compareFavorite(favorite):boolean{
+    public compareFavorite(favorite):any{
+        this.getFavorites();
+
         if(this.favorites.length){
-            for(var i = 0; i <= this.favorites.length; i++){
-                if(this.favorites[i]["title"] == favorite["title"] &&
-                    this.favorites[i]["longitude"] == favorite["longitude"] &&
-                    this.favorites[i]["latitude"] == favorite["latitude"]){
-                    return true;
+            for(var i = 0; i < this.favorites.length; i++){
+                let title = this.favorites[i]["title"];
+                let longitude = this.favorites[i]["longitude"];
+                let latitude = this.favorites[i]["latitude"];
+
+                if(title == favorite["title"] && longitude == favorite["longitude"] && latitude == favorite["latitude"]){
+                    return i;
                 }
             }
         }
@@ -31,8 +35,17 @@ export class favoriteService {
         return this.favorites;
     }
 
+    public deleteFavorite(index:number):void{
+        this.favorites.splice(index, 1);
+        this.saveFavorites();
+    }
+
     public saveFavorite(favorite) {
         this.favorites.push(favorite);
+        localStorage.setItem('favoriteStorage', JSON.stringify(this.favorites));
+    }
+
+    public saveFavorites():void{
         localStorage.setItem('favoriteStorage', JSON.stringify(this.favorites));
     }
 }

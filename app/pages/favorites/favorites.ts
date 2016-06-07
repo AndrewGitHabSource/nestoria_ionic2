@@ -1,7 +1,7 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {favoriteService} from './favoriteService';
 import {property} from '../../common/objects';
 import {detailsPage} from '../details/details';
+import {favoriteService} from '../favorites/favoriteService';
 
 
 @Page({
@@ -9,9 +9,17 @@ import {detailsPage} from '../details/details';
 })
 export class favoritesPage {
     public favorites:Array<property>;
+    
+    emptyFavorites: boolean;
 
     constructor(private nav:NavController, navParams:NavParams, private service:favoriteService) {
         this.favorites = service.getFavorites();
+
+        this.checkEmptyFavorites();
+    }
+
+    checkEmptyFavorites(){
+        this.emptyFavorites = this.favorites.length ? false : true;
     }
 
     showProperty(event, item) {
@@ -19,5 +27,10 @@ export class favoritesPage {
             item: item,
             typeFavorite: true
         });
+    }
+
+    deleteFavorite(i){
+        this.service.deleteFavorite(i);
+        this.checkEmptyFavorites();
     }
 }
