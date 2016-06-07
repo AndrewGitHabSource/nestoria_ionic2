@@ -31,7 +31,6 @@ export class search {
         this.rest.getPropertiesOnServer(request, page)
             .then(response => {
                 this.properties = response.response.listings;
-                console.log(response);
                 if(response.response.application_response_text == "unknown location"){
                     this.serverError = "There were no properties found for the given location";
                     this.buttonBlocked = true;

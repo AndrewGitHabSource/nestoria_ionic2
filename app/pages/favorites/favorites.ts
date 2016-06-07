@@ -9,16 +9,15 @@ import {favoriteService} from '../favorites/favoriteService';
 })
 export class favoritesPage {
     public favorites:Array<property>;
-    
-    emptyFavorites: boolean;
+
+    emptyFavorites:boolean;
 
     constructor(private nav:NavController, navParams:NavParams, private service:favoriteService) {
         this.favorites = service.getFavorites();
-
         this.checkEmptyFavorites();
     }
 
-    checkEmptyFavorites(){
+    checkEmptyFavorites() {
         this.emptyFavorites = this.favorites.length ? false : true;
     }
 
@@ -29,10 +28,12 @@ export class favoritesPage {
         });
     }
 
-    deleteFavorite(i, event){
+    deleteFavorite(i, event) {
+        event.stopPropagation();
         this.service.deleteFavorite(i);
         this.checkEmptyFavorites();
-        event.stopPropagation();
-        this.nav.push(favoritesPage);
+        this.nav.setPages([ {page: favoritesPage} ], {
+            animate: false
+        });
     }
 }
